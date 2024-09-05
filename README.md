@@ -1,4 +1,47 @@
-# tree-sitter-python
+# tree-sitter-coconut
+
+A [tree-sitter][] grammar for [Coconut][].
+
+[tree-sitter]: https://github.com/tree-sitter/tree-sitter
+[Coconut]: https://coconut-lang.org/
+
+This is very much a work in progress.
+
+
+
+## Development
+
+### helix
+
+You can see how the grammar works for syntax highlighting by trying it out in the [helix editor](https://helix-editor.com/).
+
+Add the following to your [language.toml file](https://docs.helix-editor.com/languages.html):
+
+```toml
+[[language]]
+name = "coconut"
+scope = "source.coconut"
+injection-regex = "coconut"
+file-types = ["coco"]
+shebangs = ["coconut"]
+roots = ["pyproject.toml", "setup.py", "poetry.lock", "pyrightconfig.json"]
+comment-token = "#"
+language-servers = [ "pylsp" ]
+# TODO: pyls needs utf-8 offsets
+indent = { tab-width = 4, unit = "    " }
+
+[[grammar]]
+name = "coconut"
+# source = { git = "https://github.com/tree-sitter/tree-sitter-python", rev = "4bfdd9033a2225cc95032ce77066b7aeca9e2efc" }
+source = { path = "/PATH/TO/THIS/REPO"} # TODO or is it to the path of the grammar file within the repo?
+```
+
+TODO what then?
+
+
+
+<!--
+*Ideally we'll have all these things, but for now these are just links for tree-sitter-python*
 
 [![CI][ci]](https://github.com/tree-sitter/tree-sitter-python/actions/workflows/ci.yml)
 [![discord][discord]](https://discord.gg/w7nTvsVJhm)
@@ -7,9 +50,6 @@
 [![npm][npm]](https://www.npmjs.com/package/tree-sitter-python)
 [![pypi][pypi]](https://pypi.org/project/tree-sitter-python/)
 
-Python grammar for [tree-sitter][].
-
-[tree-sitter]: https://github.com/tree-sitter/tree-sitter
 
 ## References
 
@@ -22,3 +62,5 @@ Python grammar for [tree-sitter][].
 [npm]: https://img.shields.io/npm/v/tree-sitter-python?logo=npm
 [crates]: https://img.shields.io/crates/v/tree-sitter-python?logo=rust
 [pypi]: https://img.shields.io/pypi/v/tree-sitter-python?logo=pypi&logoColor=ffd242
+
+-->
