@@ -3,10 +3,10 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tree-sitter-python"
-description = "Python grammar for tree-sitter"
+name = "tree-sitter-coconut"
+description = "Coconut grammar for tree-sitter"
 version = "0.23.2"
-keywords = ["incremental", "parsing", "tree-sitter", "python"]
+keywords = ["incremental", "parsing", "tree-sitter", "python", "coconut"]
 classifiers = [
   "Intended Audience :: Developers",
   "License :: OSI Approved :: MIT License",
@@ -23,7 +23,7 @@ license.text = "MIT"
 readme = "README.md"
 
 [project.urls]
-Homepage = "https://github.com/tree-sitter/tree-sitter-python"
+Homepage = "https://github.com/aidanmontare-fed/tree-sitter-coconut"
 
 [project.optional-dependencies]
 core = ["tree-sitter~=0.21"]

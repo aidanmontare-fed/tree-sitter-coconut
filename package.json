@@ -1,8 +1,8 @@
 {
-  "name": "tree-sitter-python",
+  "name": "tree-sitter-coconut",
   "version": "0.23.2",
-  "description": "Python grammar for tree-sitter",
-  "repository": "github:tree-sitter/tree-sitter-python",
+  "description": "Coconut grammar for tree-sitter",
+  "repository": "github:aidanmontare-fed/tree-sitter-coconut",
   "license": "MIT",
   "author": "Max Brunsfeld <maxbrunsfeld@gmail.com>",
   "contributors": [
@@ -53,7 +53,7 @@
   },
   "tree-sitter": [
     {
-      "scope": "source.python",
+      "scope": "source.coconut",
       "file-types": [
         "py"
       ],

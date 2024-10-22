@@ -1,7 +1,8 @@
 /**
- * @file Python grammar for tree-sitter
- * @author Max Brunsfeld <maxbrunsfeld@gmail.com>
+ * @file Coconut grammar for tree-sitter
+ * @author 
  * @license MIT
+ * @see {@link https://coconut.readthedocs.io/en/latest/DOCS.html|Coconut Documentation}
  * @see {@link https://docs.python.org/2/reference/grammar.html|Python 2 grammar}
  * @see {@link https://docs.python.org/3/reference/grammar.html|Python 3 grammar}
  */
@@ -39,7 +40,7 @@ const PREC = {
 const SEMICOLON = ';';
 
 module.exports = grammar({
-  name: 'python',
+  name: 'coconut',
 
   extras: $ => [
     $.comment,

@@ -14,7 +14,7 @@ Package.resolved
 # Go artifacts
 _obj/
 
-# Python artifacts
+# Coconut artifacts
 .venv/
 dist/
 *.egg-info

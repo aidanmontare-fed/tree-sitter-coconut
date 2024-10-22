@@ -13,6 +13,6 @@ fn main() {
     c_config.file(&scanner_path);
     println!("cargo:rerun-if-changed={}", scanner_path.to_str().unwrap());
 
-    c_config.compile("tree-sitter-python");
+    c_config.compile("tree-sitter-coconut");
     println!("cargo:rerun-if-changed={}", parser_path.to_str().unwrap());
 }

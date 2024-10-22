@@ -1,11 +1,11 @@
 from unittest import TestCase
 
-import tree_sitter, tree_sitter_python
+import tree_sitter, tree_sitter_coconut
 
 
 class TestLanguage(TestCase):
     def test_can_load_grammar(self):
         try:
-            tree_sitter.Language(tree_sitter_python.language())
+            tree_sitter.Language(tree_sitter_coconut.language())
         except Exception:
-            self.fail("Error loading Python grammar")
+            self.fail("Error loading Coconut grammar")

@@ -1,0 +1,33 @@
+{
+  "grammars": [
+    {
+      "name": "coconut",
+      "camelcase": "Coconut",
+      "scope": "source.coconut",
+      "path": ".",
+      "file-types": [
+        "coconut",
+        "coco"
+      ],
+      "highlights": "queries/highlights.scm",
+      "tags": "queries/tags.scm",
+      "injection-regex": "coconut"
+    }
+  ],
+  "metadata": {
+    "version": "0.0.1",
+    "license": "MIT",
+    "description": "Coconut grammar for tree-sitter",
+    "links": {
+      "repository": "git+https://github.com/aidanmontare-fed/tree-sitter-coconut.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}
