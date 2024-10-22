@@ -11,6 +11,10 @@ This is very much a work in progress.
 
 ## Development
 
+- <https://tree-sitter.github.io/tree-sitter/creating-parsers>
+
+`cargo install tree-sitter-cli`
+
 ### helix
 
 You can see how the grammar works for syntax highlighting by trying it out in the [helix editor](https://helix-editor.com/).
@@ -26,17 +30,31 @@ file-types = ["coco"]
 shebangs = ["coconut"]
 roots = ["pyproject.toml", "setup.py", "poetry.lock", "pyrightconfig.json"]
 comment-token = "#"
-language-servers = [ "pylsp" ]
+# language-servers = [ "pylsp" ]
 # TODO: pyls needs utf-8 offsets
 indent = { tab-width = 4, unit = "    " }
 
 [[grammar]]
 name = "coconut"
 # source = { git = "https://github.com/tree-sitter/tree-sitter-python", rev = "4bfdd9033a2225cc95032ce77066b7aeca9e2efc" }
-source = { path = "/PATH/TO/THIS/REPO"} # TODO or is it to the path of the grammar file within the repo?
+source = { path = "/PATH/TO/THIS/REPO"}
 ```
 
-TODO what then?
+Helix uses syntax highlighting and indentation queries from it's own runtime directory, not from the tree-sitter package (because Helix uses some of its own names in the queries). So, for now we can do something like this:
+
+```bash
+$ ln -s $PWD/queries/helix ~/.config/helix/runtime/queries/coconut
+```
+
+Later, the `queries/helix` folder should probably become a pull request into helix's source.
+
+```bash
+$ hx --grammar fetch
+$ hx --grammar build
+$ hx --health coconut
+```
+
+Now try opening a coconut file in helix, and you should have syntax highlighting!
 
 
 
