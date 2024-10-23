@@ -140,8 +140,39 @@ dubsums |> list |> print
 
 ---
 
-(module // todo
-	())
+(module
+  (expression_statement
+    (assignment
+      (identifier)
+      (call
+        (identifier)
+        (argument_list
+          (lambda
+            (lambda_parameters
+              (identifier)
+              (identifier))
+            (binary_operator
+              (integer)
+              (parenthesized_expression
+                (binary_operator
+                  (identifier)
+                  (identifier)))))
+          (call
+            (identifier)
+            (argument_list
+              (integer)
+              (integer)))
+          (call
+            (identifier)
+            (argument_list
+              (integer)
+              (integer)))))))
+  (expression_statement
+    (pipe
+      (pipe
+        (identifier)
+        (identifier))
+      (identifier))))
 
 
 ===
@@ -269,6 +300,31 @@ expnums = range(5) |> map$(pow$(?, 2))
 expnums |> list |> print
 
 ---
+
+(module
+  (expression_statement
+    (assignment
+      (identifier)
+      (pipe
+        (call
+          (identifier)
+          (argument_list
+            (integer)))
+        (partial
+          (identifier)
+          (partial_argument_list
+            (partial
+              (identifier)
+              (partial_argument_list
+                (deferred_argument)
+                (integer))))))))
+  (expression_statement
+    (pipe
+      (pipe
+        (identifier)
+        (identifier))
+      (identifier))))
+
 
 ===
 Pipes
