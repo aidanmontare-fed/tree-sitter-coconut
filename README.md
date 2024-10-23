@@ -15,8 +15,9 @@ This is very much a work in progress.
 - Operators
   - [x] lambda syntax
   - [x] partial application
-  - [ ] pipes
+  - [x] pipes
     - [x] in-place pipes
+    - [ ] lambda as last argument of pipes
 - Keywords
 - Expressions
 - Function Definition
