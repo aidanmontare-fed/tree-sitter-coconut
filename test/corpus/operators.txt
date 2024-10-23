@@ -563,21 +563,87 @@ async def do_stuff(some_data) = (
 In-place Pipes
 ===
 
-|>=
-|*>=
-|**>=
-<|=
-<*|=
-<**|=
-|?>=
-|?*>=
-|?**>=
-<?|=
-<*?|=
-<**?|=
+x |>= f
+(a, b) |*>= f
+my_dict |**>= f
+f <|= x   # TODO why would you do this? (or any of the backwards examples here)
+f <*|= (a, b)
+f <**|= dict(a=1,b=2)
+maybe |?>= f
+(a, b) |?*>= f
+maybe_dict |?**>= f
+f <?|= None
+f <*?|= (x,y)
+f <**?|= maybe_dict
 
 ---
 
+(module
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (augmented_assignment
+      (tuple_pattern
+        (identifier)
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (identifier)))
+  (comment)
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (tuple
+        (identifier)
+        (identifier))))
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (call
+        (identifier)
+        (argument_list
+          (keyword_argument
+            (identifier)
+            (integer))
+          (keyword_argument
+            (identifier)
+            (integer))))))
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (augmented_assignment
+      (tuple_pattern
+        (identifier)
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (none)))
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (tuple
+        (identifier)
+        (identifier))))
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (identifier))))
 
 ===
 Pipes with parenthetical continuation
