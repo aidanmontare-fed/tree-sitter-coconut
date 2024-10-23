@@ -14,12 +14,16 @@ This is very much a work in progress.
 
 - Operators
   - [x] lambda syntax
+  - [x] partial application
 - Keywords
 - Expressions
 - Function Definition
 - Statements
 - Built-Ins
 
+
+- [ ] highlights
+- [ ] tests for highlights
 
 
 ## Development

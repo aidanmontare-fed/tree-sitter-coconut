@@ -298,6 +298,10 @@
         "named": true
       },
       {
+        "type": "partial",
+        "named": true
+      },
+      {
         "type": "set",
         "named": true
       },
@@ -2119,6 +2123,32 @@
     }
   },
   {
+    "type": "keyword_converted_to_positional",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "deferred_argument",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "keyword_pattern",
     "named": true,
     "fields": {},
@@ -2568,6 +2598,75 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "list_splat",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "partial",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "generator_expression",
+            "named": true
+          },
+          {
+            "type": "partial_argument_list",
+            "named": true
+          }
+        ]
+      },
+      "function": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "primary_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "partial_argument_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "deferred_argument",
+          "named": true
+        },
+        {
+          "type": "dictionary_splat",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "keyword_argument",
+          "named": true
+        },
+        {
+          "type": "keyword_converted_to_positional",
+          "named": true
+        },
         {
           "type": "list_splat",
           "named": true
@@ -3337,6 +3436,10 @@
     "named": false
   },
   {
+    "type": "$",
+    "named": false
+  },
+  {
     "type": "%",
     "named": false
   },
@@ -3559,6 +3662,10 @@
   {
     "type": "def",
     "named": false
+  },
+  {
+    "type": "deferred_argument",
+    "named": true
   },
   {
     "type": "del",

@@ -512,6 +512,25 @@ module.exports = grammar({
       ')',
     ),
 
+    partial_argument_list: $ => seq(
+      '(',
+      optional(commaSep1(
+        choice(
+          $.expression,
+          $.list_splat,
+          $.dictionary_splat,
+          alias($.parenthesized_list_splat, $.parenthesized_expression),
+          $.keyword_argument,
+          $.deferred_argument,
+          $.keyword_converted_to_positional,
+        ),
+      )),
+      optional(','),
+      ')',
+    ),
+
+    deferred_argument: $ => "?",
+
     decorated_definition: $ => seq(
       repeat1($.decorator),
       field('definition', choice(
@@ -751,6 +770,7 @@ module.exports = grammar({
       $.attribute,
       $.subscript,
       $.call,
+      $.partial,
       $.list,
       $.list_comprehension,
       $.dictionary,
@@ -954,6 +974,15 @@ module.exports = grammar({
       )),
     )),
 
+    partial: $ => prec(PREC.call, seq(
+      field('function', $.primary_expression),
+      "$",
+      field('arguments', choice(
+        $.generator_expression,
+        $.partial_argument_list,
+      )),
+    )),
+
     typed_parameter: $ => prec(PREC.typed_parameter, seq(
       choice(
         $.identifier,
@@ -984,6 +1013,12 @@ module.exports = grammar({
       field('value', $.expression),
     ),
 
+    keyword_converted_to_positional: $ => seq(
+      field('name', choice($.identifier, $.keyword_identifier)),
+      '=',
+      field('value', $.deferred_argument),
+    ),
+    
     // Literals
 
     list: $ => seq(

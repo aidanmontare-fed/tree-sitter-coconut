@@ -34,6 +34,11 @@
 (call
   function: (identifier) @function)
 
+; Partial application
+
+(partial
+  function: (identifier) @function)
+
 ; Function definitions
 
 (function_definition
