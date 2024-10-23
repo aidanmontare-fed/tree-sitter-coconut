@@ -8,6 +8,19 @@ A [tree-sitter][] grammar for [Coconut][].
 This is very much a work in progress.
 
 
+## Coconut Features
+
+<https://coconut.readthedocs.io/en/latest/DOCS.html>
+
+- Operators
+  - [x] lambda syntax
+- Keywords
+- Expressions
+- Function Definition
+- Statements
+- Built-Ins
+
+
 
 ## Development
 

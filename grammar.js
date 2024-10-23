@@ -854,7 +854,7 @@ module.exports = grammar({
       ),
       prec.right(seq(
         optional(field('parameters', alias(choice($.parameters, $.lambda_single_parameter), $.lambda_parameters))),
-        '=>',
+        choice('=>', '->'),
         field('body', $.expression),
       )),
     )),
