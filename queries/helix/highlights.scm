@@ -39,6 +39,29 @@
 (pipe
   to: (identifier) @function)
 
+(augmented_assignment
+  operator: [
+  "|>="
+  "|*>="
+  "|**>="
+  "|?>="
+  "|?*>="
+  "|?**>="
+  ]
+  right: (identifier) @function)
+
+; TODO does this highlighting make sense?
+(augmented_assignment
+  left: (identifier) @function
+  operator: [
+  "<|="
+  "<*|="
+  "<**|="
+  "<?|="
+  "<*?|="
+  "<**?|="
+  ])
+
 ; Partial application
 
 (partial
@@ -184,6 +207,19 @@
   "<?|"
   "<*?|"
   "<**?|"
+  ; in-place pipes
+  "|>="
+  "|*>="
+  "|**>="
+  "<|="
+  "<*|="
+  "<**|="
+  "|?>="
+  "|?*>="
+  "|?**>="
+  "<?|="
+  "<*?|="
+  "<**?|="
 ] @operator
 
 [
