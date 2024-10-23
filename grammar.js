@@ -50,6 +50,9 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.primary_expression, $.pattern],
+    [$.primary_expression, $.parameter],
+    [$.parameter, $.pattern],
+    [$.primary_expression, $.pattern, $.parameter],
     [$.primary_expression, $.list_splat_pattern],
     [$.tuple, $.tuple_pattern],
     [$.list, $.list_pattern],
@@ -645,6 +648,8 @@ module.exports = grammar({
       commaSep1($.pattern),
       optional(','),
     ),
+    
+    lambda_single_parameter: $ => $.identifier,
 
     parameter: $ => choice(
       $.identifier,
@@ -833,11 +838,25 @@ module.exports = grammar({
       )),
     )),
 
-    lambda: $ => prec(PREC.lambda, seq(
-      'lambda',
-      field('parameters', optional($.lambda_parameters)),
-      ':',
-      field('body', $.expression),
+    // lambda: $ => prec(PREC.lambda, seq(
+    //   'lambda',
+    //   field('parameters', optional($.lambda_parameters)),
+    //   ':',
+    //   field('body', $.expression),
+    // )),
+
+    lambda: $ => prec(PREC.lambda, choice(
+      seq(
+        'lambda',
+        field('parameters', optional($.lambda_parameters)),
+        ':',
+        field('body', $.expression),
+      ),
+      prec.right(seq(
+        optional(field('parameters', alias(choice($.parameters, $.lambda_single_parameter), $.lambda_parameters))),
+        '=>',
+        field('body', $.expression),
+      )),
     )),
 
     lambda_within_for_in_clause: $ => seq(
