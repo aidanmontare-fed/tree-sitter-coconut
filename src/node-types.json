@@ -144,6 +144,10 @@
         "named": true
       },
       {
+        "type": "pipe",
+        "named": true
+      },
+      {
         "type": "primary_expression",
         "named": true
       }
@@ -2699,6 +2703,86 @@
     }
   },
   {
+    "type": "pipe",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "<**?|",
+            "named": false
+          },
+          {
+            "type": "<**|",
+            "named": false
+          },
+          {
+            "type": "<*?|",
+            "named": false
+          },
+          {
+            "type": "<*|",
+            "named": false
+          },
+          {
+            "type": "<?|",
+            "named": false
+          },
+          {
+            "type": "<|",
+            "named": false
+          },
+          {
+            "type": "|**>",
+            "named": false
+          },
+          {
+            "type": "|*>",
+            "named": false
+          },
+          {
+            "type": "|>",
+            "named": false
+          },
+          {
+            "type": "|?**>",
+            "named": false
+          },
+          {
+            "type": "|?*>",
+            "named": false
+          },
+          {
+            "type": "|?>",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "positional_separator",
     "named": true,
     "fields": {}
@@ -3540,6 +3624,22 @@
     "named": false
   },
   {
+    "type": "<**?|",
+    "named": false
+  },
+  {
+    "type": "<**|",
+    "named": false
+  },
+  {
+    "type": "<*?|",
+    "named": false
+  },
+  {
+    "type": "<*|",
+    "named": false
+  },
+  {
     "type": "<<",
     "named": false
   },
@@ -3553,6 +3653,14 @@
   },
   {
     "type": "<>",
+    "named": false
+  },
+  {
+    "type": "<?|",
+    "named": false
+  },
+  {
+    "type": "<|",
     "named": false
   },
   {
@@ -3840,7 +3948,31 @@
     "named": false
   },
   {
+    "type": "|**>",
+    "named": false
+  },
+  {
+    "type": "|*>",
+    "named": false
+  },
+  {
     "type": "|=",
+    "named": false
+  },
+  {
+    "type": "|>",
+    "named": false
+  },
+  {
+    "type": "|?**>",
+    "named": false
+  },
+  {
+    "type": "|?*>",
+    "named": false
+  },
+  {
+    "type": "|?>",
     "named": false
   },
   {

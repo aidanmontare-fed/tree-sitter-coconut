@@ -270,3 +270,277 @@ expnums |> list |> print
 
 ---
 
+===
+Pipes
+===
+
+x |> f
+x |> f |> g
+(a, b) |*> (*) |> h
+{"foo": 12} |**> f
+f <| x
+f <*| (a, b)
+f <**| dict(a=12,b=13)
+None |?> never_runs
+possible_result |?*> f
+dict(a=13) |?**> f
+f <?| x
+f <*?| (a,b)
+f <**?| dict(a=13)
+
+---
+
+(module
+  (expression_statement
+    (pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (identifier)
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (tuple
+          (identifier)
+          (identifier))
+        (tuple
+          (operator_function)))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (dictionary
+        (pair
+          (string
+            (string_start)
+            (string_content)
+            (string_end))
+          (integer)))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (pipe
+      (identifier)
+      (tuple
+        (identifier)
+        (identifier))))
+  (expression_statement
+    (pipe
+      (identifier)
+      (call
+        (identifier)
+        (argument_list
+          (keyword_argument
+            (identifier)
+            (integer))
+          (keyword_argument
+            (identifier)
+            (integer))))))
+  (expression_statement
+    (pipe
+      (none)
+      (identifier)))
+  (expression_statement
+    (pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (pipe
+      (call
+        (identifier)
+        (argument_list
+          (keyword_argument
+            (identifier)
+            (integer))))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (pipe
+      (identifier)
+      (tuple
+        (identifier)
+        (identifier))))
+  (expression_statement
+    (pipe
+      (identifier)
+      (call
+        (identifier)
+        (argument_list
+          (keyword_argument
+            (identifier)
+            (integer)))))))
+
+===
+equivalents to pipes
+===
+
+x |> f
+f(x)
+
+(a, b) |> f
+f(a,b)
+
+f <| x
+f(x)
+
+---
+
+(module
+  (expression_statement
+    (pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (call
+      (identifier)
+      (argument_list
+        (identifier))))
+  (expression_statement
+    (pipe
+      (tuple
+        (identifier)
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (call
+      (identifier)
+      (argument_list
+        (identifier)
+        (identifier))))
+  (expression_statement
+    (pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (call
+      (identifier)
+      (argument_list
+        (identifier)))))
+
+===
+Piping into await
+===
+
+===
+cannot pipe into await with a starred pipe
+:error
+===
+
+===
+Piping into walrus assignment
+===
+
+===
+cannot pipe into walrus with starred pipes
+:error
+===
+
+===
+lambda as last argument of pipe (docs)
+===
+
+a |> x => b |> c
+a |> (x => b |> c)
+a |> (x => b) |> c
+
+---
+
+(module
+  (expression_statement
+    (pipe
+      (identifier)
+      (lambda
+        (lambda_parameters
+          (identifier)
+        (pipe
+          (identifier)
+          (identifier))))))
+  (expression_statement
+    (pipe
+      (identifier)
+      (parenthesized_expression
+        (lambda
+          (lambda_parameters
+            (identifier))
+          (pipe
+            (identifier)
+            (identifier))))))
+  (expression_statement
+    (pipe
+      (pipe
+        (identifier)
+        (parenthesized_expression
+          (lambda
+            (lambda_parameters
+              (identifier))
+            (identifier))))
+        (identifier))))
+
+===
+Pipes (docs)
+===
+
+obj |> .attribute |> .method(args) |> func$(args) |> .[index]
+
+def sq(x) = x**2
+(1, 2) |*> (+) |> sq |> print
+
+async def do_stuff(some_data) = (
+    some_data
+    |> async_func
+    |> await
+    |> post_proc
+)
+
+---
+
+===
+In-place Pipes
+===
+
+|>=
+|*>=
+|**>=
+<|=
+<*|=
+<**|=
+|?>=
+|?*>=
+|?**>=
+<?|=
+<*?|=
+<**?|=
+
+---
+
+
+===
+Pipes with parenthetical continuation
+===
+
+(x
+  |> f
+  |> g
+  |> h)
+
+---
+
+(module
+  (expression_statement
+    (parenthesized_expression
+      (pipe
+        (pipe
+          (pipe
+            (identifier)
+            (identifier))
+          (identifier))
+        (identifier)))))

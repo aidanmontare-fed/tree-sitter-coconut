@@ -22,6 +22,7 @@ const PREC = {
 
   parenthesized_expression: 1,
   parenthesized_list_splat: 1,
+  pipe: 9,
   or: 10,
   and: 11,
   not: 12,
@@ -752,6 +753,7 @@ module.exports = grammar({
       $.conditional_expression,
       $.named_expression,
       $.as_pattern,
+      $.pipe,
     ),
 
     primary_expression: $ => choice(
@@ -973,6 +975,41 @@ module.exports = grammar({
         $.argument_list,
       )),
     )),
+
+    pipe: $ => choice(
+      $._pipe_forward,
+      $._pipe_backward,
+    ),
+
+    _pipe_forward: $ => prec.left(PREC.pipe, seq(
+      field('left', $.expression),
+      field('operator', $._forward_pipe_operator),
+      field('right', $.primary_expression),
+    )),
+
+    _forward_pipe_operator: $ => choice(
+      '|>',
+      '|*>',
+      '|**>',
+      '|?>',
+      '|?*>',
+      '|?**>',
+    ),
+
+    _pipe_backward: $=> prec.left(PREC.pipe, seq(
+      field('left', $.primary_expression),
+      field('operator', $._backward_pipe_operator),
+      field('right', $.expression),
+    )),
+
+    _backward_pipe_operator: $ => choice(
+      '<|',
+      '<*|',
+      '<**|',
+      '<?|',
+      '<*?|',
+      '<**?|',
+    ),
 
     partial: $ => prec(PREC.call, seq(
       field('function', $.primary_expression),
