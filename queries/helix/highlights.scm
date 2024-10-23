@@ -12,7 +12,7 @@
   function: (identifier) @function.builtin)
  (#match?
    @function.builtin
-   "^(abs|all|any|ascii|bin|bool|breakpoint|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dict|dir|divmod|enumerate|eval|exec|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|isinstance|issubclass|iter|len|list|locals|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|range|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|vars|zip|__import__)$"))
+   "^(abs|all|any|ascii|bin|bool|breakpoint|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dict|dir|divmod|enumerate|eval|exec|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|isinstance|issubclass|iter|len|list|locals|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|range|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|vars|zip|__import__|addpattern|memoize|override|recursive_decorator|makedata|fmap|call|safe_call|ident|const|flip|lift|lift_apart|and_then|and_then_await|reduce|reiterable|starmap|zip_longest|takewhile|dropwhile|flatten|scan|count|cycle|cartesian_product|multi_enumerate|groupsof|windowsof|all_equal|tee|consume|process_map|thread_map|collectby|mapreduce|async_map|reveal_type|reveal_locals)$"))
 
 ; Function calls
 
@@ -54,7 +54,7 @@
 ; Parameters
 
 ((identifier) @variable.builtin
- (#match? @variable.builtin "^(self|cls)$"))
+ (#match? @variable.builtin "^(self|cls|TYPE_CHECKING)$"))
 
 (parameters (identifier) @variable.parameter)
 (parameters (typed_parameter (identifier) @variable.parameter))
@@ -76,7 +76,7 @@
 ((identifier) @type.builtin
  (#match?
    @type.builtin
-   "^(bool|bytes|dict|float|frozenset|int|list|set|str|tuple)$"))
+   "^(bool|bytes|dict|float|frozenset|int|list|set|str|tuple|multiset|Expected)$"))
 
 ; In type hints make everything types to catch non-conforming identifiers
 ; (e.g., datetime.datetime) and None
@@ -225,6 +225,6 @@
 
 ((identifier) @type.builtin
   (#match? @type.builtin
-    "^(BaseException|Exception|ArithmeticError|BufferError|LookupError|AssertionError|AttributeError|EOFError|FloatingPointError|GeneratorExit|ImportError|ModuleNotFoundError|IndexError|KeyError|KeyboardInterrupt|MemoryError|NameError|NotImplementedError|OSError|OverflowError|RecursionError|ReferenceError|RuntimeError|StopIteration|StopAsyncIteration|SyntaxError|IndentationError|TabError|SystemError|SystemExit|TypeError|UnboundLocalError|UnicodeError|UnicodeEncodeError|UnicodeDecodeError|UnicodeTranslateError|ValueError|ZeroDivisionError|EnvironmentError|IOError|WindowsError|BlockingIOError|ChildProcessError|ConnectionError|BrokenPipeError|ConnectionAbortedError|ConnectionRefusedError|ConnectionResetError|FileExistsError|FileNotFoundError|InterruptedError|IsADirectoryError|NotADirectoryError|PermissionError|ProcessLookupError|TimeoutError|Warning|UserWarning|DeprecationWarning|PendingDeprecationWarning|SyntaxWarning|RuntimeWarning|FutureWarning|ImportWarning|UnicodeWarning|BytesWarning|ResourceWarning)$"))
+    "^(BaseException|Exception|ArithmeticError|BufferError|LookupError|AssertionError|AttributeError|EOFError|FloatingPointError|GeneratorExit|ImportError|ModuleNotFoundError|IndexError|KeyError|KeyboardInterrupt|MemoryError|NameError|NotImplementedError|OSError|OverflowError|RecursionError|ReferenceError|RuntimeError|StopIteration|StopAsyncIteration|SyntaxError|IndentationError|TabError|SystemError|SystemExit|TypeError|UnboundLocalError|UnicodeError|UnicodeEncodeError|UnicodeDecodeError|UnicodeTranslateError|ValueError|ZeroDivisionError|EnvironmentError|IOError|WindowsError|BlockingIOError|ChildProcessError|ConnectionError|BrokenPipeError|ConnectionAbortedError|ConnectionRefusedError|ConnectionResetError|FileExistsError|FileNotFoundError|InterruptedError|IsADirectoryError|NotADirectoryError|PermissionError|ProcessLookupError|TimeoutError|Warning|UserWarning|DeprecationWarning|PendingDeprecationWarning|SyntaxWarning|RuntimeWarning|FutureWarning|ImportWarning|UnicodeWarning|BytesWarning|ResourceWarning|MatchError|CoconutWarning)$"))
 
 (ERROR) @error
