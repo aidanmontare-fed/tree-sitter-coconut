@@ -486,19 +486,118 @@ f(x)
 Piping into await
 ===
 
+x |> await # TODO should the awaits parse as identifiers or something else?
+await x
+
+x |> f |> await
+
+x |> f |> g |> await
+
+x |> await
+await <| x
+maybe_x |?> await
+await <?| maybe_x
+x |>= await
+await <|= x         # TODO does this make sense?
+maybe_x |?>= await
+await <?|= maybe_x  # TODO this too
+
+---
+
+(module
+  (expression_statement
+    (pipe
+      (identifier)
+      (identifier)))
+  (comment)
+  (expression_statement
+    (await
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (identifier)
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (pipe
+          (identifier)
+          (identifier))
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (identifier)))
+  (comment)
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (augmented_assignment
+      (identifier)
+      (identifier)))
+  (comment))
+
 ===
 cannot pipe into await with a starred pipe
 :error
+
+:skip
+# TODO right now such a thing parses, which is maybe fine?
 ===
+
+x |*> await
+
+---
 
 ===
 Piping into walrus assignment
 ===
 
+12 |> f |> (x := .)
+(x := .) <| f <| 12
+maybe_12 |?> f |?> (x := .)
+(x := .) <?| f <?| maybe_12
+
+# x |>= (x := .)  # TODO are these possible?
+# (x := .) <|=    # TODO are these possible?
+# |?>= (x := .)   # TODO are these possible?
+# (x := .) <?|=   # TODO are these possible?
+
+
+---
+
 ===
 cannot pipe into walrus with starred pipes
 :error
 ===
+
+
+---
 
 ===
 lambda as last argument of pipe (docs)
