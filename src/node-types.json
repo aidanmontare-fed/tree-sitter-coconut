@@ -2706,7 +2706,7 @@
     "type": "pipe",
     "named": true,
     "fields": {
-      "left": {
+      "from": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2770,12 +2770,12 @@
           }
         ]
       },
-      "right": {
+      "to": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "expression",
+            "type": "primary_expression",
             "named": true
           }
         ]

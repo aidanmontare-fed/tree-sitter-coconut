@@ -34,6 +34,11 @@
 (call
   function: (identifier) @function)
 
+; Pipes
+
+(pipe
+  to: (identifier) @function)
+
 ; Partial application
 
 (partial
@@ -166,6 +171,19 @@
   "=>"
   "->"
   "$"
+  ; pipes
+  "|>"
+  "|*>"
+  "|**>"
+  "<|"
+  "<*|"
+  "<**|"
+  "|?>"
+  "|?*>"
+  "|?**>"
+  "<?|"
+  "<*?|"
+  "<**?|"
 ] @operator
 
 [

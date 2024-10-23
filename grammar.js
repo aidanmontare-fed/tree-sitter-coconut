@@ -982,9 +982,9 @@ module.exports = grammar({
     ),
 
     _pipe_forward: $ => prec.left(PREC.pipe, seq(
-      field('left', $.expression),
+      field('from', $.expression),
       field('operator', $._forward_pipe_operator),
-      field('right', $.primary_expression),
+      field('to', $.primary_expression),
     )),
 
     _forward_pipe_operator: $ => choice(
@@ -997,9 +997,9 @@ module.exports = grammar({
     ),
 
     _pipe_backward: $=> prec.left(PREC.pipe, seq(
-      field('left', $.primary_expression),
+      field('to', $.primary_expression),
       field('operator', $._backward_pipe_operator),
-      field('right', $.expression),
+      field('from', $.expression),
     )),
 
     _backward_pipe_operator: $ => choice(

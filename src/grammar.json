@@ -4958,7 +4958,7 @@
         "members": [
           {
             "type": "FIELD",
-            "name": "left",
+            "name": "from",
             "content": {
               "type": "SYMBOL",
               "name": "expression"
@@ -4974,7 +4974,7 @@
           },
           {
             "type": "FIELD",
-            "name": "right",
+            "name": "to",
             "content": {
               "type": "SYMBOL",
               "name": "primary_expression"
@@ -5020,7 +5020,7 @@
         "members": [
           {
             "type": "FIELD",
-            "name": "left",
+            "name": "to",
             "content": {
               "type": "SYMBOL",
               "name": "primary_expression"
@@ -5036,7 +5036,7 @@
           },
           {
             "type": "FIELD",
-            "name": "right",
+            "name": "from",
             "content": {
               "type": "SYMBOL",
               "name": "expression"
