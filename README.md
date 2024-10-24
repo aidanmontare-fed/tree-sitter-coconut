@@ -17,7 +17,8 @@ This is very much a work in progress.
   - [x] partial application
   - [x] pipes
     - [x] in-place pipes
-    - [ ] lambda as last argument of pipes
+    - [x] lambda as last argument of pipes
+      - [ ] for backwards pipes
     - [x] piping into `(<name> := .)` to assign to a `<name>`
   - [ ] function composition
 - Keywords

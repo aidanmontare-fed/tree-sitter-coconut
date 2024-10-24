@@ -675,6 +675,8 @@ cannot pipe into walrus with starred pipes
 
 ===
 lambda as last argument of pipe (docs)
+
+# TODO what about the backwards pipe operators? which argument is allowed to be a lambda?
 ===
 
 a |> x => b |> c
@@ -689,10 +691,10 @@ a |> (x => b) |> c
       (identifier)
       (lambda
         (lambda_parameters
-          (identifier)
+          (identifier))
         (pipe
           (identifier)
-          (identifier))))))
+          (identifier)))))
   (expression_statement
     (pipe
       (identifier)

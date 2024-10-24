@@ -1027,6 +1027,7 @@ module.exports = grammar({
     _pipe_to_expression: $ => choice(
       $.primary_expression,
       $.pipe_named_expression_partial,
+      $.lambda,
     ),
 
     pipe_named_expression_partial: $ => seq(

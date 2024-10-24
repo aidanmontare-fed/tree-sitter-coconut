@@ -5140,6 +5140,10 @@
         {
           "type": "SYMBOL",
           "name": "pipe_named_expression_partial"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "lambda"
         }
       ]
     },
