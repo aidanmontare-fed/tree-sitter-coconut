@@ -592,6 +592,7 @@ cannot pipe into walrus with starred pipes
 :error
 ===
 
+(a, b) |*> (x := .)
 
 ---
 
@@ -673,6 +674,335 @@ Pipes and operator functions
           (identifier))
         (tuple
           (operator_function)))
+      (identifier))))
+
+===
+Pipes within other constructs
+===
+
+def something(x):
+    return (
+      x
+      |> f
+      |> g
+      |> h
+    )
+
+def another(x):
+    return x |> f |> g |> h
+
+if a |> f and b |> g:
+    print('yay!')
+
+---
+
+(module
+  (function_definition
+    (identifier)
+    (parameters
+      (identifier))
+    (block
+      (return_statement
+        (parenthesized_expression
+          (pipe
+            (pipe
+              (pipe
+                (identifier)
+                (identifier))
+              (identifier))
+            (identifier))))))
+  (function_definition
+    (identifier)
+    (parameters
+      (identifier))
+    (block
+      (return_statement
+        (pipe
+          (pipe
+            (pipe
+              (identifier)
+              (identifier))
+            (identifier))
+          (identifier)))))
+  (if_statement
+    (boolean_operator
+      (pipe
+        (identifier)
+        (identifier))
+      (pipe
+        (identifier)
+        (identifier)))
+    (block
+      (expression_statement
+        (call
+          (identifier)
+          (argument_list
+            (string
+              (string_start)
+              (string_content)
+              (string_end))))))))
+
+===
+Precedence of pipes (docs)
+===
+
+x |> y + z
+x |> (y + z)
+
+---
+
+(module
+  (expression_statement
+    (pipe
+      (identifier)
+      (binary_operator
+        (identifier)
+        (identifier))))
+  (expression_statement
+    (pipe
+      (identifier)
+      (parenthesized_expression
+        (binary_operator
+          (identifier)
+          (identifier))))))
+
+===
+Precedence of pipes
+===
+
+(a |> f) + (b |> g)
+
+a |> f and b |> g
+(a |> f) and (b |> g)
+
+a |> f or b |> g
+
+x |> f ..> g
+x |> (f ..> g)
+
+x |> f <| g
+(x |> f) <| g
+
+a |> f == b |> g
+
+a |> f is b |> g
+
+a |> f is not b |> g
+
+a |> f in my_list
+
+---
+
+(module
+  (expression_statement
+    (binary_operator
+      (parenthesized_expression
+        (pipe
+          (identifier)
+          (identifier)))
+      (parenthesized_expression
+        (pipe
+          (identifier)
+          (identifier)))))
+  (expression_statement
+    (boolean_operator
+      (pipe
+        (identifier)
+        (identifier))
+      (pipe
+        (identifier)
+        (identifier))))
+  (expression_statement
+    (boolean_operator
+      (parenthesized_expression
+        (pipe
+          (identifier)
+          (identifier)))
+      (parenthesized_expression
+        (pipe
+          (identifier)
+          (identifier)))))
+  (expression_statement
+    (boolean_operator
+      (pipe
+        (identifier)
+        (identifier))
+      (pipe
+        (identifier)
+        (identifier))))
+  (expression_statement
+    (pipe
+      (identifier)
+      (composition_pipe
+        (identifier)
+        (identifier))))
+  (expression_statement
+    (pipe
+      (identifier)
+      (parenthesized_expression
+        (composition_pipe
+          (identifier)
+          (identifier)))))
+  (expression_statement
+    (pipe
+      (pipe
+        (identifier)
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (parenthesized_expression
+        (pipe
+          (identifier)
+          (identifier)))
+      (identifier)))
+  (expression_statement
+    (comparison_operator
+      (pipe
+        (identifier)
+        (identifier)
+      (pipe
+        (identifier)
+        (identifier)))))
+  (expression_statement
+    (comparison_operator
+      (pipe
+        (identifier)
+        (identifier)
+      (pipe
+        (identifier)
+        (identifier)))))
+  (expression_statement
+    (comparison_operator
+      (pipe
+        (identifier)
+        (identifier)
+      (pipe
+        (identifier)
+        (identifier)))))
+  (expression_statement
+    (comparison_operator
+      (pipe
+        (identifier)
+        (identifier))
+      (identifier))))
+
+===
+Left-associativity of pipes
+===
+
+a |> b |> c
+a |> b <| c
+b <| a |> c
+b <| a <| c
+
+---
+
+(module
+  (expression_statement
+    (pipe
+      (pipe
+        (identifier)
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (identifier)
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (identifier)
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (identifier)
+        (identifier))
+      (identifier))))
+
+===
+Left-associativity of pipes 2
+===
+
+a |> b |> c |> d
+a |> b |> c <| d
+a |> b <| c |> d
+a |> b <| c <| d
+b <| a |> c |> d
+b<| a |> c <| d
+b <| a <| c |> d
+b <| a <| c <| d
+
+---
+
+(module
+  (expression_statement
+    (pipe
+      (pipe
+        (pipe
+          (identifier)
+          (identifier))
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (pipe
+          (identifier)
+          (identifier))
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (pipe
+          (identifier)
+          (identifier))
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (pipe
+          (identifier)
+          (identifier))
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (pipe
+          (identifier)
+          (identifier))
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (pipe
+          (identifier)
+          (identifier))
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (pipe
+          (identifier)
+          (identifier))
+        (identifier))
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (pipe
+          (identifier)
+          (identifier))
+        (identifier))
       (identifier))))
 
 ===
