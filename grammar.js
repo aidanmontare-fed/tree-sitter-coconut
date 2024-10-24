@@ -1032,10 +1032,7 @@ module.exports = grammar({
     pipe_named_expression_partial: $ => seq(
       '(',
       field('name', $.identifier),
-      ':= .)'
-      // ':=',
-      // '.',
-      // ')'
+      /:=\s*\.\s*\)/,
     ),
 
 

@@ -633,6 +633,38 @@ maybe_12 |?> f |?> (x := .)
   (comment))
 
 ===
+Whitespace variations of piping into walrus assignment
+===
+
+12 |> (x := .)
+12 |> (x :=  .)
+12 |> (x := . )
+12 |> (x := .  )
+---
+
+(module
+  (expression_statement
+    (pipe
+      (integer)
+      (pipe_named_expression_partial
+        (identifier))))
+  (expression_statement
+    (pipe
+      (integer)
+      (pipe_named_expression_partial
+        (identifier))))
+  (expression_statement
+    (pipe
+      (integer)
+      (pipe_named_expression_partial
+        (identifier))))
+  (expression_statement
+    (pipe
+      (integer)
+      (pipe_named_expression_partial
+        (identifier)))))
+
+===
 cannot pipe into walrus with starred pipes
 :error
 ===
