@@ -3475,10 +3475,6 @@
         {
           "type": "SYMBOL",
           "name": "as_pattern"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "pipe"
         }
       ]
     },
@@ -3548,6 +3544,18 @@
         {
           "type": "SYMBOL",
           "name": "partial"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pipe"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "composition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "composition_pipe"
         },
         {
           "type": "SYMBOL",
@@ -3697,7 +3705,7 @@
       "members": [
         {
           "type": "PREC_LEFT",
-          "value": 18,
+          "value": 21,
           "content": {
             "type": "SEQ",
             "members": [
@@ -3730,7 +3738,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 18,
+          "value": 21,
           "content": {
             "type": "SEQ",
             "members": [
@@ -3763,7 +3771,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 19,
+          "value": 22,
           "content": {
             "type": "SEQ",
             "members": [
@@ -3796,7 +3804,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 19,
+          "value": 22,
           "content": {
             "type": "SEQ",
             "members": [
@@ -3829,7 +3837,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 19,
+          "value": 22,
           "content": {
             "type": "SEQ",
             "members": [
@@ -3862,7 +3870,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 19,
+          "value": 22,
           "content": {
             "type": "SEQ",
             "members": [
@@ -3895,7 +3903,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 19,
+          "value": 22,
           "content": {
             "type": "SEQ",
             "members": [
@@ -3928,7 +3936,7 @@
         },
         {
           "type": "PREC_RIGHT",
-          "value": 21,
+          "value": 24,
           "content": {
             "type": "SEQ",
             "members": [
@@ -3961,7 +3969,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 14,
+          "value": 17,
           "content": {
             "type": "SEQ",
             "members": [
@@ -3994,7 +4002,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 15,
+          "value": 18,
           "content": {
             "type": "SEQ",
             "members": [
@@ -4027,7 +4035,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 16,
+          "value": 19,
           "content": {
             "type": "SEQ",
             "members": [
@@ -4060,7 +4068,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 17,
+          "value": 20,
           "content": {
             "type": "SEQ",
             "members": [
@@ -4093,7 +4101,7 @@
         },
         {
           "type": "PREC_LEFT",
-          "value": 17,
+          "value": 20,
           "content": {
             "type": "SEQ",
             "members": [
@@ -4128,7 +4136,7 @@
     },
     "unary_operator": {
       "type": "PREC",
-      "value": 20,
+      "value": 23,
       "content": {
         "type": "SEQ",
         "members": [
@@ -4770,7 +4778,7 @@
     },
     "attribute": {
       "type": "PREC",
-      "value": 22,
+      "value": 25,
       "content": {
         "type": "SEQ",
         "members": [
@@ -4799,7 +4807,7 @@
     },
     "subscript": {
       "type": "PREC",
-      "value": 22,
+      "value": 25,
       "content": {
         "type": "SEQ",
         "members": [
@@ -4953,7 +4961,7 @@
     },
     "call": {
       "type": "PREC",
-      "value": 22,
+      "value": 25,
       "content": {
         "type": "SEQ",
         "members": [
@@ -5000,7 +5008,7 @@
     },
     "_pipe_forward": {
       "type": "PREC_LEFT",
-      "value": 9,
+      "value": 14,
       "content": {
         "type": "SEQ",
         "members": [
@@ -5009,7 +5017,7 @@
             "name": "from",
             "content": {
               "type": "SYMBOL",
-              "name": "expression"
+              "name": "primary_expression"
             }
           },
           {
@@ -5062,7 +5070,7 @@
     },
     "_pipe_backward": {
       "type": "PREC_LEFT",
-      "value": 9,
+      "value": 14,
       "content": {
         "type": "SEQ",
         "members": [
@@ -5087,7 +5095,7 @@
             "name": "from",
             "content": {
               "type": "SYMBOL",
-              "name": "expression"
+              "name": "primary_expression"
             }
           }
         ]
@@ -5122,9 +5130,132 @@
         }
       ]
     },
+    "composition": {
+      "type": "PREC",
+      "value": 16,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "primary_expression"
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ".."
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "primary_expression"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "composition_pipe": {
+      "type": "PREC",
+      "value": 15,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "left",
+            "content": {
+              "type": "SYMBOL",
+              "name": "primary_expression"
+            }
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "operator",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_composition_pipe_operator"
+                  }
+                },
+                {
+                  "type": "FIELD",
+                  "name": "right",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "primary_expression"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "_composition_pipe_operator": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "..>"
+        },
+        {
+          "type": "STRING",
+          "value": "<.."
+        },
+        {
+          "type": "STRING",
+          "value": "..*>"
+        },
+        {
+          "type": "STRING",
+          "value": "<*.."
+        },
+        {
+          "type": "STRING",
+          "value": "..**>"
+        },
+        {
+          "type": "STRING",
+          "value": "<**.."
+        },
+        {
+          "type": "STRING",
+          "value": "..?>"
+        },
+        {
+          "type": "STRING",
+          "value": "<?.."
+        },
+        {
+          "type": "STRING",
+          "value": "..?*>"
+        },
+        {
+          "type": "STRING",
+          "value": "<*?.."
+        },
+        {
+          "type": "STRING",
+          "value": "..?**>"
+        },
+        {
+          "type": "STRING",
+          "value": "<**?.."
+        }
+      ]
+    },
     "partial": {
       "type": "PREC",
-      "value": 22,
+      "value": 25,
       "content": {
         "type": "SEQ",
         "members": [
@@ -6566,7 +6697,7 @@
     },
     "await": {
       "type": "PREC",
-      "value": 20,
+      "value": 23,
       "content": {
         "type": "SEQ",
         "members": [

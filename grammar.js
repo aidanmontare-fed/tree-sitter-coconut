@@ -753,7 +753,6 @@ module.exports = grammar({
       $.conditional_expression,
       $.named_expression,
       $.as_pattern,
-      $.pipe, // TODO should be in primary_expression?
     ),
 
     primary_expression: $ => choice(
@@ -773,6 +772,7 @@ module.exports = grammar({
       $.subscript,
       $.call,
       $.partial,
+      $.pipe,
       $.list,
       $.list_comprehension,
       $.dictionary,
@@ -994,9 +994,9 @@ module.exports = grammar({
     ),
 
     _pipe_forward: $ => prec.left(PREC.pipe, seq(
-      field('from', $.expression),
+      field('from', $.primary_expression),
       field('operator', $._forward_pipe_operator),
-      field('to', $.expression),
+      field('to', $.primary_expression),
     )),
 
     _forward_pipe_operator: $ => choice(
@@ -1009,9 +1009,9 @@ module.exports = grammar({
     ),
 
     _pipe_backward: $=> prec.left(PREC.pipe, seq(
-      field('to', $.expression),
+      field('to', $.primary_expression),
       field('operator', $._backward_pipe_operator),
-      field('from', $.expression),
+      field('from', $.primary_expression),
     )),
 
     _backward_pipe_operator: $ => choice(
