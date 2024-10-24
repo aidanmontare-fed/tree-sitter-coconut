@@ -22,20 +22,20 @@ const PREC = {
 
   parenthesized_expression: 1,
   parenthesized_list_splat: 1,
-  pipe: 9,
   or: 10,
   and: 11,
   not: 12,
   compare: 13,
-  bitwise_or: 14,
-  bitwise_and: 15,
-  xor: 16,
-  shift: 17,
-  plus: 18,
-  times: 19,
-  unary: 20,
-  power: 21,
-  call: 22,
+  pipe: 14,
+  bitwise_or: 17,
+  bitwise_and: 18,
+  xor: 19,
+  shift: 20,
+  plus: 21,
+  times: 22,
+  unary: 23,
+  power: 24,
+  call: 25,
 };
 
 const SEMICOLON = ';';
@@ -753,7 +753,7 @@ module.exports = grammar({
       $.conditional_expression,
       $.named_expression,
       $.as_pattern,
-      $.pipe,
+      $.pipe, // TODO should be in primary_expression?
     ),
 
     primary_expression: $ => choice(
@@ -996,7 +996,7 @@ module.exports = grammar({
     _pipe_forward: $ => prec.left(PREC.pipe, seq(
       field('from', $.expression),
       field('operator', $._forward_pipe_operator),
-      field('to', $.primary_expression),
+      field('to', $.expression),
     )),
 
     _forward_pipe_operator: $ => choice(
@@ -1009,7 +1009,7 @@ module.exports = grammar({
     ),
 
     _pipe_backward: $=> prec.left(PREC.pipe, seq(
-      field('to', $.primary_expression),
+      field('to', $.expression),
       field('operator', $._backward_pipe_operator),
       field('from', $.expression),
     )),
