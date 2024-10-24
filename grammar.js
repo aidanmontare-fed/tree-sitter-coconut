@@ -104,6 +104,7 @@ module.exports = grammar({
     $._expressions,
     $._left_hand_side,
     $.keyword_identifier,
+    $._pipe_to_expression,
   ],
 
   word: $ => $.identifier,
@@ -996,7 +997,7 @@ module.exports = grammar({
     _pipe_forward: $ => prec.left(PREC.pipe, seq(
       field('from', $.primary_expression),
       field('operator', $._forward_pipe_operator),
-      field('to', $.primary_expression),
+      field('to', $._pipe_to_expression),
     )),
 
     _forward_pipe_operator: $ => choice(
@@ -1009,7 +1010,7 @@ module.exports = grammar({
     ),
 
     _pipe_backward: $=> prec.left(PREC.pipe, seq(
-      field('to', $.primary_expression),
+      field('to', $._pipe_to_expression),
       field('operator', $._backward_pipe_operator),
       field('from', $.primary_expression),
     )),
@@ -1022,6 +1023,21 @@ module.exports = grammar({
       '<*?|',
       '<**?|',
     ),
+
+    _pipe_to_expression: $ => choice(
+      $.primary_expression,
+      $.pipe_named_expression_partial,
+    ),
+
+    pipe_named_expression_partial: $ => seq(
+      '(',
+      field('name', $.identifier),
+      ':= .)'
+      // ':=',
+      // '.',
+      // ')'
+    ),
+
 
     partial: $ => prec(PREC.call, seq(
       field('function', $.primary_expression),

@@ -574,10 +574,12 @@ x |*> await
 Piping into walrus assignment
 ===
 
+12 |> (x := .)
 12 |> f |> (x := .)
-(x := .) <| f <| 12
+(x := .) <| 12
+(cool_name := .) <| f <| 12
 maybe_12 |?> f |?> (x := .)
-(x := .) <?| f <?| maybe_12
+(cool_name := .) <?| f <?| maybe_12
 
 # x |>= (x := .)  # TODO are these possible?
 # (x := .) <|=    # TODO are these possible?
@@ -585,6 +587,50 @@ maybe_12 |?> f |?> (x := .)
 # (x := .) <?|=   # TODO are these possible?
 
 ---
+
+(module
+  (expression_statement
+    (pipe
+      (integer)
+      (pipe_named_expression_partial
+        (identifier))))
+  (expression_statement
+    (pipe
+      (pipe
+        (integer)
+        (identifier))
+      (pipe_named_expression_partial
+        (identifier))))
+  (expression_statement
+    (pipe
+      (pipe_named_expression_partial
+        (identifier))
+      (integer)))
+  (expression_statement
+    (pipe
+      (pipe
+        (pipe_named_expression_partial
+          (identifier))
+        (identifier))
+      (integer)))
+  (expression_statement
+    (pipe
+      (pipe
+        (identifier)
+        (identifier))
+      (pipe_named_expression_partial
+        (identifier))))
+  (expression_statement
+    (pipe
+      (pipe
+        (pipe_named_expression_partial
+          (identifier))
+        (identifier))
+      (identifier)))
+  (comment)
+  (comment)
+  (comment)
+  (comment))
 
 ===
 cannot pipe into walrus with starred pipes

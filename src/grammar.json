@@ -5033,7 +5033,7 @@
             "name": "to",
             "content": {
               "type": "SYMBOL",
-              "name": "primary_expression"
+              "name": "_pipe_to_expression"
             }
           }
         ]
@@ -5079,7 +5079,7 @@
             "name": "to",
             "content": {
               "type": "SYMBOL",
-              "name": "primary_expression"
+              "name": "_pipe_to_expression"
             }
           },
           {
@@ -5127,6 +5127,40 @@
         {
           "type": "STRING",
           "value": "<**?|"
+        }
+      ]
+    },
+    "_pipe_to_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "primary_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pipe_named_expression_partial"
+        }
+      ]
+    },
+    "pipe_named_expression_partial": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":= .)"
         }
       ]
     },
@@ -6901,7 +6935,8 @@
     "_suite",
     "_expressions",
     "_left_hand_side",
-    "keyword_identifier"
+    "keyword_identifier",
+    "_pipe_to_expression"
   ],
   "supertypes": [
     "_simple_statement",

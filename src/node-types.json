@@ -2926,7 +2926,27 @@
         "required": true,
         "types": [
           {
+            "type": "pipe_named_expression_partial",
+            "named": true
+          },
+          {
             "type": "primary_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "pipe_named_expression_partial",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -3792,6 +3812,10 @@
   },
   {
     "type": ":=",
+    "named": false
+  },
+  {
+    "type": ":= .)",
     "named": false
   },
   {

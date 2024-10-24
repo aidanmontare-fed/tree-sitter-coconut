@@ -18,6 +18,8 @@ This is very much a work in progress.
   - [x] pipes
     - [x] in-place pipes
     - [ ] lambda as last argument of pipes
+    - [x] piping into `(<name> := .)` to assign to a `<name>`
+  - [ ] function composition
 - Keywords
 - Expressions
 - Function Definition
