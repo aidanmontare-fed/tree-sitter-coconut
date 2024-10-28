@@ -1,0 +1,75 @@
+===
+where statement
+===
+
+var where:
+    var = 1 + 2
+
+---
+
+(module
+  (where_statement
+    (expression_statement
+      (identifier))
+    (block
+      (expression_statement
+        (assignment
+          (identifier)
+          (binary_operator
+            (integer)
+            (integer)))))))
+
+===
+where statement (docs)
+===
+
+result = a + b where:
+    a = 1
+    b = 2
+
+---
+
+(module
+  (where_statement
+    (expression_statement
+      (assignment
+        (identifier)
+        (binary_operator
+          (identifier)
+          (identifier))))
+    (block
+      (expression_statement
+        (assignment
+          (identifier)
+          (integer)))
+      (expression_statement
+        (assignment
+          (identifier)
+          (integer))))))
+
+
+===
+assert statement inside where
+===
+
+assert a == b where:
+    a = 1
+    b = 2
+
+---
+
+(module
+  (where_statement
+    (assert_statement
+      (comparison_operator
+        (identifier)
+        (identifier)))
+    (block
+      (expression_statement
+        (assignment
+          (identifier)
+          (integer)))
+      (expression_statement
+        (assignment
+          (identifier)
+          (integer))))))

@@ -32,6 +32,10 @@
         "named": true
       },
       {
+        "type": "where_statement",
+        "named": true
+      },
+      {
         "type": "while_statement",
         "named": true
       },
@@ -3574,6 +3578,32 @@
     }
   },
   {
+    "type": "where_statement",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "statement": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_simple_statement",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "while_statement",
     "named": true,
     "fields": {
@@ -4177,6 +4207,10 @@
   {
     "type": "type_conversion",
     "named": true
+  },
+  {
+    "type": "where",
+    "named": false
   },
   {
     "type": "while",

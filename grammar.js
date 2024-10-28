@@ -272,6 +272,7 @@ module.exports = grammar({
       $.while_statement,
       $.try_statement,
       $.with_statement,
+      $.where_statement,
       $.function_definition,
       $.class_definition,
       $.decorated_definition,
@@ -412,6 +413,13 @@ module.exports = grammar({
     with_item: $ => prec.dynamic(1, seq(
       field('value', $.expression),
     )),
+
+    where_statement: $ => seq(
+      field('statement', $._simple_statement),
+      'where',
+      ':',
+      field('body', $._suite),
+    ),
 
     function_definition: $ => seq(
       optional('async'),

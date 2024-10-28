@@ -230,6 +230,7 @@
   "pass"
 
   "with"
+  "where"
 ] @keyword.control
 
 [

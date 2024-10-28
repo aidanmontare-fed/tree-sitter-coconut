@@ -22,6 +22,7 @@ This is very much a work in progress.
     - [x] piping into `(<name> := .)` to assign to a `<name>`
   - [ ] function composition
 - Keywords
+  - [x] where statements
 - Expressions
 - Function Definition
 - Statements
