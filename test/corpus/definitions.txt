@@ -1,0 +1,293 @@
+===
+assignment functions
+===
+
+# TODO should a one line ones parse as a block?
+def f(x) = x + 1
+async def g(x) = await x - 1
+
+def f(x) =
+    x + 1
+
+# just for comparison
+def f(x):
+    return x + 1
+
+def f(x,y) =
+    x = y = 1
+    x += 1
+    (x,y)
+
+async def g(x) =
+    y = await x
+    y + 3
+
+---
+
+(module
+  (comment)
+  (assignment_function_definition
+    (identifier)
+    (parameters
+      (identifier))
+    (binary_operator
+      (identifier)
+      (integer)))
+  (assignment_function_definition
+    (identifier)
+    (parameters
+      (identifier))
+    (binary_operator
+      (await
+        (identifier))
+      (integer)))
+  (assignment_function_definition
+    (identifier)
+    (parameters
+      (identifier))
+    (block
+      (binary_operator
+        (identifier)
+        (integer))))
+  (comment)
+  (function_definition
+    (identifier)
+    (parameters
+      (identifier))
+    (block
+      (return_statement
+        (binary_operator
+          (identifier)
+          (integer)))))
+  (assignment_function_definition
+    (identifier)
+    (parameters
+      (identifier)
+      (identifier))
+    (block
+      (expression_statement
+        (assignment
+          (identifier)
+          (assignment
+            (identifier)
+            (integer))))
+      (expression_statement
+        (augmented_assignment
+          (identifier)
+          (integer)))
+      (tuple
+        (identifier)
+        (identifier))))
+  (assignment_function_definition
+    (identifier)
+    (parameters
+      (identifier))
+    (block
+      (expression_statement
+        (assignment
+          (identifier)
+          (await
+            (identifier))))
+      (binary_operator
+        (identifier)
+        (integer)))))
+
+===
+assignment functions (docs)
+===
+
+def binexp(x) = 2**x
+5 |> binexp |> print
+
+---
+
+(module
+  (assignment_function_definition
+    (identifier)
+    (parameters
+      (identifier))
+    (binary_operator
+      (integer)
+      (identifier)))
+  (expression_statement
+    (pipe
+      (pipe
+        (integer)
+        (identifier))
+      (identifier))))
+
+
+===
+assignment functions with type parameters
+===
+
+# for comparison
+def f[T](x: T) -> tuple[T, bool]:
+    return (x, bool(x))
+
+def f[T](x: T) -> tuple[T, bool] = (x, bool(x))
+
+def f[T](x: T) -> tuple[T, bool] =
+    x += 1
+    (x, bool(x))
+
+---
+
+(module
+  (comment)
+  (function_definition
+    (identifier)
+    (type_parameter
+      (type
+        (identifier)))
+    (parameters
+      (typed_parameter
+        (identifier)
+        (type
+          (identifier))))
+    (type
+      (generic_type
+        (identifier)
+        (type_parameter
+          (type
+            (identifier))
+          (type
+            (identifier)))))
+    (block
+      (return_statement
+        (tuple
+          (identifier)
+          (call
+            (identifier)
+            (argument_list
+              (identifier)))))))
+  (assignment_function_definition
+    (identifier)
+    (type_parameter
+      (type
+        (identifier)))
+    (parameters
+      (typed_parameter
+        (identifier)
+        (type
+          (identifier))))
+    (type
+      (generic_type
+        (identifier)
+        (type_parameter
+          (type
+            (identifier))
+          (type
+            (identifier)))))
+    (tuple
+      (identifier)
+      (call
+        (identifier)
+        (argument_list
+          (identifier)))))
+  (assignment_function_definition
+    (identifier)
+    (type_parameter
+      (type
+        (identifier)))
+    (parameters
+      (typed_parameter
+        (identifier)
+        (type
+          (identifier))))
+    (type
+      (generic_type
+        (identifier)
+        (type_parameter
+          (type
+            (identifier))
+          (type
+            (identifier)))))
+    (block
+      (expression_statement
+        (augmented_assignment
+          (identifier)
+          (integer)))
+      (tuple
+        (identifier)
+        (call
+          (identifier)
+          (argument_list
+            (identifier)))))))
+
+
+===
+assignment functions should not end with return statements
+:error
+===
+
+def f(x) =
+    return x
+
+---
+
+===
+decorated assignment functions
+===
+
+@memoize
+def f(x):
+    return expensive(x) + 12
+
+@memoize
+def f(x) = expensive(x) + 12
+
+---
+
+(module
+  (decorated_definition
+    (decorator
+      (identifier))
+    (function_definition
+      (identifier)
+      (parameters
+        (identifier))
+      (block
+        (return_statement
+          (binary_operator
+            (call
+              (identifier)
+              (argument_list
+                (identifier)))
+            (integer))))))
+  (decorated_definition
+    (decorator
+      (identifier))
+    (assignment_function_definition
+      (identifier)
+      (parameters
+        (identifier))
+      (binary_operator
+        (call
+          (identifier)
+          (argument_list
+            (identifier)))
+        (integer)))))
+
+===
+lambdas in assignment functions
+===
+
+def f(x) = k => k + 1
+def f(x) = k -> k + 1
+def f(x: int) -> int = k => k + 1
+def f(x: int) -> int = k -> k + 1
+
+---
+
+===
+assignment function definition combined with infix function definition
+===
+
+---
+
+===
+assignment function definition combined with pattern-matching function definition
+===
+
+---

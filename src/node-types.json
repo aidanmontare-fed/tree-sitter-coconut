@@ -4,6 +4,10 @@
     "named": true,
     "subtypes": [
       {
+        "type": "assignment_function_definition",
+        "named": true
+      },
+      {
         "type": "class_definition",
         "named": true
       },
@@ -514,6 +518,76 @@
     }
   },
   {
+    "type": "assignment_function_definition",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "parameters",
+            "named": true
+          }
+        ]
+      },
+      "return": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "return_type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      },
+      "type_parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_parameter",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "attribute",
     "named": true,
     "fields": {
@@ -804,6 +878,16 @@
         "types": [
           {
             "type": "case_clause",
+            "named": true
+          }
+        ]
+      },
+      "return": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
             "named": true
           }
         ]
@@ -1332,6 +1416,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "assignment_function_definition",
+            "named": true
+          },
           {
             "type": "class_definition",
             "named": true

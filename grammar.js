@@ -274,6 +274,7 @@ module.exports = grammar({
       $.with_statement,
       $.where_statement,
       $.function_definition,
+      $.assignment_function_definition,
       $.class_definition,
       $.decorated_definition,
       $.match_statement,
@@ -437,6 +438,43 @@ module.exports = grammar({
       field('body', $._suite),
     ),
 
+    assignment_function_definition: $ => seq(
+      optional('async'),
+      'def',
+      field('name', $.identifier),
+      field('type_parameters', optional($.type_parameter)),
+      field('parameters', $.parameters),
+      optional(
+        seq(
+          '->',
+          field('return_type', $.type),
+        ),
+      ),
+      '=',
+      field('body', $._assignment_function_body),
+      // field('body', choice(
+      //   field('return', $.expression), // TODO this is the problem
+      //   // alias($._assignment_function_body, $.block),
+      // )),
+    ),
+    
+    _assignment_function_body: $ => choice(
+      seq(
+        field('return', $.expression),
+        $._newline,
+      ),
+      seq(
+        $._indent,
+        alias($.assignment_function_block, $.block),
+      ),
+    ),
+
+    assignment_function_block: $ => seq(
+      repeat($._statement),
+      field('return', $.expression),
+      $._dedent,
+    ),
+
     parameters: $ => seq(
       '(',
       optional($._parameters),
@@ -546,6 +584,7 @@ module.exports = grammar({
       field('definition', choice(
         $.class_definition,
         $.function_definition,
+        $.assignment_function_definition,
       )),
     ),
 

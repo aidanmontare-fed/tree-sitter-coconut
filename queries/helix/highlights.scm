@@ -76,6 +76,9 @@
 (function_definition
   name: (identifier) @function)
 
+(assignment_function_definition
+  name: (identifier) @function)
+
 ; Decorators
 
 (decorator) @function
