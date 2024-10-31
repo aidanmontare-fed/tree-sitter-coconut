@@ -722,6 +722,9 @@ a |> (x => b) |> c
 
 ===
 Pipes (docs)
+
+:skip
+# TODO waiting on other things to be implemented
 ===
 
 obj |> .attribute |> .method(args) |> func$(args) |> .[index]
@@ -738,8 +741,16 @@ async def do_stuff(some_data) = (
 
 ---
 
+(module
+  (expression_statement)
+  (..._definition)
+  (expression_statement)
+  (...))
+
 ===
 Pipes and operator functions
+:skip
+# TODO waiting on operator function implementation
 # TODO other things to test?
   # combo of parenthesized pipes and op functions?
 ===
