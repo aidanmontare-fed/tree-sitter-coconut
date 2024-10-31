@@ -25,6 +25,8 @@ This is very much a work in progress.
   - [x] where statements
 - Expressions
 - Function Definition
+  - [x] assignment functions (basic implementation)
+    - [ ] finish tests
 - Statements
 - Built-Ins
 

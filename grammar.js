@@ -105,6 +105,7 @@ module.exports = grammar({
     $._left_hand_side,
     $.keyword_identifier,
     $._pipe_to_expression,
+    // $._assignment_function_body, // TODO or just inline this since it's used once?
   ],
 
   word: $ => $.identifier,
@@ -467,6 +468,8 @@ module.exports = grammar({
         $._indent,
         alias($.assignment_function_block, $.block),
       ),
+      // I think this means that if you hit enter you get syntax highlighting even before typing body
+      // alias($._newline, $.block),
     ),
 
     assignment_function_block: $ => seq(
