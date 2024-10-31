@@ -1,0 +1,250 @@
+===
+Operator Functions
+
+:skip
+# TODO waiting on implementation
+===
+
+(::)        
+($)         
+(.)         
+(,)         
+(+)         
+(-)         
+(*)         
+(**)        
+(/)         
+(//)        
+(%)         
+(&)         
+(^)         
+(|)         
+(<<)        
+(>>)        
+(<)         
+(>)         
+(==)        
+(<=)        
+(>=)        
+(!=)        
+(~)         
+(@)         
+(|>)        
+(|*>)       
+(|**>)      
+(<|)        
+(<*|)       
+(<**|)      
+(|?>)       
+(|?*>)      
+(|?**>)     
+(<?|)       
+(<*?|)      
+(<**?|)     
+(..), (<..) 
+(..>)       
+(<*..)      
+(..*>)      
+(<**..)     
+(..**>)     
+(not)       
+(and)       
+(or)        
+(is)        
+(is not)    
+(in)        
+(not in)    
+(assert)    
+(raise)     
+[;]         
+[;;]        
+...
+.[]         
+.$[]        
+
+---
+
+(module
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function))
+  (expression_statement
+    (operator_function)))
+
+
+; Similarly to iterator comprehensions, if the operator function is the only argument to a function, the parentheses of the function call can also serve as the parentheses for the operator function.
+
+===
+Operator functions (docs)
+===
+
+(range(0, 5), range(5, 10)) |*> map$(+) |> list |> print
+
+===
+Implicit partial application of operator functions
+===
+
+(. + 1)
+(::)        
+($)         
+(.)         
+(,)         
+(+)         
+(-)         
+(*)         
+(**)        
+(/)         
+(//)        
+(%)         
+(&)         
+(^)         
+(|)         
+(<<)        
+(>>)        
+(<)         
+(>)         
+(==)        
+(<=)        
+(>=)        
+(!=)        
+(~)         
+(@)         
+(|>)        
+(|*>)       
+(|**>)      
+(<|)        
+(<*|)       
+(<**|)      
+(|?>)       
+(|?*>)      
+(|?**>)     
+(<?|)       
+(<*?|)      
+(<**?|)     
+(..), (<..) 
+(..>)       
+(<*..)      
+(..*>)      
+(<**..)     
+(..**>)     
+(not)       
+(and)       
+(or)        
+(is)        
+(is not)    
+(in)        
+(not in)    
+(assert)    
+(raise)     
+[;]         
+[;;]        
+...
+.[]         
+.$[]        
