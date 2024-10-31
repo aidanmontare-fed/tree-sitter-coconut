@@ -1191,3 +1191,362 @@ Pipes with parenthetical continuation
             (identifier))
           (identifier))
         (identifier)))))
+
+===
+Function composition operators
+===
+
+f .. g
+f ..> g
+f <.. g
+f ..*> g
+f <*.. g
+f ..**> g
+f <**.. g
+f ..?> g
+f <?.. g
+f ..?*> g
+f <*?.. g
+f ..?**> g
+f <**?.. g
+
+---
+
+(module
+  (expression_statement
+    (composition
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (identifier)))
+  )
+
+===
+Forwards and backwards function composition pipes cannot be used together in the same expression (unlike normal pipes).
+
+:skip
+# TODO must be implemented
+===
+
+---
+
+===
+Forwards and backwards function composition pipes have precedence in-between None-coalescing and normal pipes.
+
+:skip
+# TODO must be implemented
+===
+
+---
+
+===
+The .. operator has lower precedence than :: but higher precedence than infix functions while the ..> pipe operators have a precedence directly higher than normal pipes.
+
+:skip
+# TODO must be implemented
+===
+
+---
+
+===
+Function composition (docs)
+===
+
+fog = f..g
+f_into_g = f ..> g
+
+---
+
+(module
+  (expression_statement
+    (assignment
+      (identifier)
+      (composition
+        (identifier)
+        (identifier))))
+  (expression_statement
+    (assignment
+      (identifier)
+      (composition_pipe
+        (identifier)
+        (identifier)))))
+
+===
+Longer function compositions
+
+:skip
+# TODO function composition operators not fully implemented
+===
+
+f .. g .. h
+a .. b .. c .. d
+a .. b .. c .. d .. e
+f ..> g ..> h
+a ..> b ..> c ..> d
+a ..> b ..> c ..> d ..> e
+
+---
+
+(module
+  (expression_statement
+    (composition
+      (identifier)
+      (identifier)
+      (identifier)))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (identifier)
+      (identifier))))
+
+
+===
+Composition within other constructs
+
+:skip
+# TODO function composition operators not fully implemented
+===
+
+comp = f .. g .. h
+
+def h(x):
+    return (f .. g)(x)
+
+def h(x):
+    c = f .. g
+    d = (a .. b)(x)
+    return c(x) + d(x)
+
+(
+  x
+  |> f
+  |> g .. h
+  |> i
+)
+
+---
+
+(module
+  (expression_statement
+    (assignment
+      (identifier)
+      (composition
+        (identifier)
+        (identifier)
+        (identifier))))
+  (function_definition
+    (identifier)
+    (parameters
+      (identifier))
+    (block
+      (return_statement
+        (call
+          (parenthesized_expression
+            (composition
+              (identifier)
+              (identifier)))
+          (argument_list
+            (identifier))))))
+  (function_definition
+    (identifier)
+    (parameters
+      (identifier))
+    (block
+      (expression_statement
+        (assignment
+          (identifier)
+          (composition
+            (identifier)
+            (identifier))))
+      (expression_statement
+        (assignment
+          (identifier)
+          (call
+            (parenthesized_expression
+              (composition
+                (identifier)
+                (identifier)))
+            (argument_list
+              (identifier)))))
+      (return_statement
+        (binary_operator
+          (call
+            (identifier)
+            (argument_list
+              (identifier)))
+          (call
+            (identifier)
+            (argument_list
+              (identifier)))))))
+  (expression_statement
+    (parenthesized_expression
+      (pipe
+        (pipe
+          (pipe
+            (identifier)
+            (identifier))
+          (composition
+            (identifier)
+            (identifier)))
+        (identifier))))
+)
+
+===
+Composition Pipes within other constructs
+
+:skip
+# TODO function composition operators not fully implemented
+===
+
+---
+
+===
+Mixing composition pipes
+
+:skip
+# TODO function composition operators not fully implemented
+===
+
+---
+
+===
+Cannot mix forward and reverse composition pipes
+:error
+
+:skip
+# TODO function composition operators not fully implemented
+===
+
+---
+
+===
+Compositions and lambdas
+
+:skip
+# TODO function composition operators not fully implemented
+===
+
+f ..> lambda x: x + 1
+f ..> x => x + 1
+f <.. lambda x: x + 1
+f <.. x => x + 1
+
+---
+
+(module
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (lambda
+        (lambda_parameters
+          (identifier))
+        (binary_operator
+          (identifier)
+          (integer)))))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (lambda
+        (lambda_parameters
+          (identifier))
+        (binary_operator
+          (identifier)
+          (integer)))))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (lambda
+        (lambda_parameters
+          (identifier))
+        (binary_operator
+          (identifier)
+          (integer)))))
+  (expression_statement
+    (composition_pipe
+      (identifier)
+      (lambda
+        (lambda_parameters
+          (identifier))
+        (binary_operator
+          (identifier)
+          (integer)))))
+  )
+
+
+===
+Lambdas not allowed after ..
+:error
+===
+
+f .. lambda x: x + 1
+
+---
+
+===
+In-place function composition
+
+:skip
+# TODO must be implemented
+===
+
+..=
+..>=
+<..=
+..*>=
+<*..=
+..**>=
+<**..=
+..?>=
+<?..=
+..?*>=
+<*?..=
+..?**>=
+<**?..=
+
+---

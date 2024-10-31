@@ -27,6 +27,8 @@ const PREC = {
   not: 12,
   compare: 13,
   pipe: 14,
+  composition_pipe: 15,
+  composition: 16,
   bitwise_or: 17,
   bitwise_and: 18,
   xor: 19,
@@ -824,6 +826,8 @@ module.exports = grammar({
       $.call,
       $.partial,
       $.pipe,
+      $.composition,
+      $.composition_pipe,
       $.list,
       $.list_comprehension,
       $.dictionary,
@@ -1086,6 +1090,38 @@ module.exports = grammar({
       /:=\s*\.\s*\)/,
     ),
 
+    composition: $ => prec(PREC.composition, seq(
+      $.primary_expression,
+      repeat1(
+        seq(
+          '..',
+          $.primary_expression,
+        )),
+    )),
+
+    composition_pipe: $ => prec(PREC.composition_pipe, seq( // TODO shouldn't be left, at least not all the time
+      field('left', $.primary_expression),
+      repeat1(
+        seq(
+          field('operator', $._composition_pipe_operator),
+          field('right', $.primary_expression),
+        )),
+    )),
+    
+    _composition_pipe_operator: $ => choice(
+      '..>',
+      '<..',
+      '..*>',
+      '<*..',
+      '..**>',
+      '<**..',
+      '..?>',
+      '<?..',
+      '..?*>',
+      '<*?..',
+      '..?**>',
+      '<**?..',
+    ),
 
     partial: $ => prec(PREC.call, seq(
       field('function', $.primary_expression),

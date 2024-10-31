@@ -21,11 +21,16 @@ This is very much a work in progress.
       - [ ] for backwards pipes
     - [x] piping into `(<name> := .)` to assign to a `<name>`
   - [ ] function composition
+    - [x] basic implementation
+    - [ ] in-place operators
+    - [ ] finish tests
+    - [ ] highlight queries
 - Keywords
   - [x] where statements
 - Expressions
 - Function Definition
-  - [x] assignment functions (basic implementation)
+  - [ ] assignment functions
+    - [x] basic implementation
     - [ ] finish tests
 - Statements
 - Built-Ins
