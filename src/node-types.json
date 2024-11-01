@@ -212,6 +212,10 @@
         "named": true
       },
       {
+        "type": "iterator_slice",
+        "named": true
+      },
+      {
         "type": "list_pattern",
         "named": true
       },
@@ -291,6 +295,10 @@
       },
       {
         "type": "integer",
+        "named": true
+      },
+      {
+        "type": "iterator_slice",
         "named": true
       },
       {
@@ -1739,6 +1747,10 @@
           "named": true
         },
         {
+          "type": "iterator_slice",
+          "named": true
+        },
+        {
           "type": "subscript",
           "named": true
         }
@@ -2396,6 +2408,36 @@
     "fields": {}
   },
   {
+    "type": "iterator_slice",
+    "named": true,
+    "fields": {
+      "subscript": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          },
+          {
+            "type": "slice",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "primary_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "keyword_argument",
     "named": true,
     "fields": {
@@ -2665,6 +2707,10 @@
           "named": true
         },
         {
+          "type": "iterator_slice",
+          "named": true
+        },
+        {
           "type": "subscript",
           "named": true
         }
@@ -2685,6 +2731,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "iterator_slice",
           "named": true
         },
         {
@@ -3866,6 +3916,10 @@
   },
   {
     "type": "$",
+    "named": false
+  },
+  {
+    "type": "$[",
     "named": false
   },
   {

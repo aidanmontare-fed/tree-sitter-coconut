@@ -27,6 +27,10 @@ Below are Coconut features and their implementation status in this grammar.
     - [x] in-place operators
     - [ ] finish tests
     - [ ] highlight queries
+  - [x] iterator slicing
+    - [x] implementation
+    - [x] tests
+    - [x] highlights
 - Keywords
   - [x] where statements
 - Expressions

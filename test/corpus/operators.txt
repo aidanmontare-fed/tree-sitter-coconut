@@ -1618,6 +1618,92 @@ f <**?..= g
       (identifier))))
 
 ===
+Iterator slicing
+===
+
+l$[0]
+l$[0:2]
+l$[:2]
+l$[0:100:10]
+l$[10:-10:-2]
+l$[slice(1,10,2)]
+
+---
+
+(module
+  (expression_statement
+    (iterator_slice
+      (identifier)
+      (integer)))
+  (expression_statement
+    (iterator_slice
+      (identifier)
+      (slice
+        (integer)
+        (integer))))
+  (expression_statement
+    (iterator_slice
+      (identifier)
+      (slice
+        (integer))))
+  (expression_statement
+    (iterator_slice
+      (identifier)
+      (slice
+        (integer)
+        (integer)
+        (integer))))
+  (expression_statement
+    (iterator_slice
+      (identifier)
+      (slice
+        (integer)
+        (unary_operator
+          (integer))
+        (unary_operator
+          (integer)))))
+  (expression_statement
+    (iterator_slice
+      (identifier)
+      (call
+        (identifier)
+        (argument_list
+          (integer)
+          (integer)
+          (integer))))))
+
+===
+Iterator slicing (docs)
+===
+
+map(x => x*2, range(10**100))$[-1] |> print
+
+---
+
+(module
+  (expression_statement
+    (pipe
+      (iterator_slice
+        (call
+          (identifier)
+          (argument_list
+            (lambda
+              (lambda_parameters
+                (identifier))
+              (binary_operator
+                (identifier)
+                (integer)))
+            (call
+              (identifier)
+              (argument_list
+                (binary_operator
+                  (integer)
+                  (integer))))))
+        (unary_operator
+          (integer)))
+      (identifier))))
+
+===
 infix functions
 :skip
 # waiting on implementation

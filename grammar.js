@@ -740,6 +740,7 @@ module.exports = grammar({
       $.identifier,
       $.keyword_identifier,
       $.subscript,
+      $.iterator_slice,
       $.attribute,
       $.list_splat_pattern,
       $.tuple_pattern,
@@ -774,12 +775,12 @@ module.exports = grammar({
 
     list_splat_pattern: $ => seq(
       '*',
-      choice($.identifier, $.keyword_identifier, $.subscript, $.attribute),
+      choice($.identifier, $.keyword_identifier, $.subscript, $.iterator_slice, $.attribute),
     ),
 
     dictionary_splat_pattern: $ => seq(
       '**',
-      choice($.identifier, $.keyword_identifier, $.subscript, $.attribute),
+      choice($.identifier, $.keyword_identifier, $.subscript, $.iterator_slice, $.attribute),
     ),
 
     // Extended patterns (patterns allowed in match statement are far more flexible than simple patterns though still a subset of "expression")
@@ -823,6 +824,7 @@ module.exports = grammar({
       $.unary_operator,
       $.attribute,
       $.subscript,
+      $.iterator_slice,
       $.call,
       $.partial,
       $.pipe,
@@ -1045,6 +1047,14 @@ module.exports = grammar({
       optional($.expression),
       optional(seq(':', optional($.expression))),
     ),
+
+    iterator_slice: $ => prec(PREC.call, seq(
+      field('value', $.primary_expression),
+      '$[',
+      commaSep1(field('subscript', choice($.expression, $.slice))),
+      optional(','),
+      ']',
+    )),
 
     ellipsis: _ => '...',
 
