@@ -12,6 +12,8 @@ This is very much a work in progress.
 
 <https://coconut.readthedocs.io/en/latest/DOCS.html>
 
+Below are Coconut features and their implementation status in this grammar.
+
 - Operators
   - [x] lambda syntax
   - [x] partial application
@@ -34,6 +36,7 @@ This is very much a work in progress.
     - [ ] finish tests
 - Statements
 - Built-Ins
+
 
 
 - [ ] highlights
