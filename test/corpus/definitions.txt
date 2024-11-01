@@ -280,6 +280,58 @@ def f(x: int) -> int = k -> k + 1
 
 ---
 
+(module
+  (assignment_function_definition
+    (identifier)
+    (parameters
+      (identifier))
+    (lambda
+      (lambda_parameters
+        (identifier))
+      (binary_operator
+        (identifier)
+        (integer))))
+  (assignment_function_definition
+    (identifier)
+    (parameters
+      (identifier))
+    (lambda
+      (lambda_parameters
+        (identifier))
+      (binary_operator
+        (identifier)
+        (integer))))
+  (assignment_function_definition
+    (identifier)
+    (parameters
+      (typed_parameter
+        (identifier)
+        (type
+          (identifier))))
+    (type
+      (identifier))
+    (lambda
+      (lambda_parameters
+        (identifier))
+      (binary_operator
+        (identifier)
+        (integer))))
+  (assignment_function_definition
+    (identifier)
+    (parameters
+      (typed_parameter
+        (identifier)
+        (type
+          (identifier))))
+    (type
+      (identifier))
+    (lambda
+      (lambda_parameters
+        (identifier))
+      (binary_operator
+        (identifier)
+        (integer)))))
+
 ===
 assignment function definition combined with infix function definition
 ===
