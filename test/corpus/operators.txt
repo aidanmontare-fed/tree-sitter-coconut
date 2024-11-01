@@ -1565,3 +1565,30 @@ In-place function composition
 <**?..=
 
 ---
+
+===
+infix functions
+:skip
+# waiting on implementation
+===
+
+---
+
+===
+infix function definition
+:skip
+# waiting on implementation
+===
+
+---
+
+===
+infix functions (docs)
+:skip
+# waiting on implementation
+===
+
+def a `mod` b = a % b
+(x `mod` 2) `print`
+
+---
