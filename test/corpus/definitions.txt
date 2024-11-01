@@ -334,12 +334,72 @@ def f(x: int) -> int = k -> k + 1
 
 ===
 assignment function definition combined with infix function definition
+
+:skip
+# TODO waiting on implementation of infix definition
+===
+
+def a `plus` b = a + b
+
+def a `times` (b=2) = a * b
+
+def x `f` y =
+    z = g(x)
+    z * y
+
+---
+
+(module
+  (assignment_function_definition
+    (identifier)
+    (parameters
+      (identifier)
+      (identifier))
+    (binary_operator
+      (identifier)
+      (identifier)))
+  (assignment_function_definition
+    (identifier)
+    (parameters
+      (identifier)
+      (default_parameter
+        (identifier)
+        (integer)))
+    (binary_operator
+      (identifier)
+      (identifier)))
+  (assignment_function_definition
+    (identifier)
+    (parameters
+      (identifier)
+      (identifier))
+    (block
+      (expression_statement
+        (assignment
+          (identifier)
+          (call
+            (identifier)
+            (argument_list
+              (identifier)))))
+      (binary_opeartor
+        (identifier)
+        (identifier)))))
+
+===
+assignment function definition combined with pattern-matching function definition
+
+:skip
+# TODO waiting on implementation of pattern-matching definition
 ===
 
 ---
 
+
 ===
-assignment function definition combined with pattern-matching function definition
+assignment function definition with infix and pattern-matching definition
+
+:skip
+# TODO waiting on both
 ===
 
 ---
